@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Diagnóstico Estratégico · Bonifácio Marketing</title>
+<meta name="description" content="Responda o diagnóstico para montarmos o plano estratégico do seu negócio.">
+<meta property="og:title" content="Diagnóstico Estratégico · Bonifácio Marketing">
+<meta property="og:description" content="Leva uns 8 minutos. É a base do plano estratégico do seu negócio.">
+<meta name="theme-color" content="#5A0C25">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap">
+<style>
+/* Layout: faixa beterraba fixa no topo (logo + progresso); uma etapa por tela num cartão osso; botões grandes para o polegar */
+:root{
+--beterraba:#7A1233; --beterraba-esc:#5A0C25; --grafite:#22252A; --grafite-2:#3A3F47;
+--latao:#C9A45C; --latao-esc:#9C7A35; --osso:#EFE9E1; --papel:#FBF8F4; --linha:#DDD3C6; --erro:#B3261E;
+--display:"Playfair Display", Georgia, serif; --texto:"Montserrat", Arial, sans-serif;
+color-scheme:light;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--osso);color:var(--grafite);font:16px/1.5 var(--texto)}
+[hidden]{display:none!important}
+.topo{position:sticky;top:0;z-index:5;background:linear-gradient(150deg,var(--beterraba),var(--beterraba-esc));color:var(--osso);
+padding-top:env(safe-area-inset-top,0px);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.topo-in{max-width:640px;margin:0 auto;padding-block:12px;display:flex;align-items:center;gap:14px}
+.topo img{height:40px;width:auto}
+.prog{flex:1;min-width:0;display:grid;gap:6px}
+.prog-txt{display:flex;justify-content:space-between;gap:8px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#E8D4A8}
+.prog-txt span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.barra{height:6px;border-radius:6px;background:rgba(255,255,255,.18);overflow:hidden}
+.barra i{display:block;height:100%;width:0;background:var(--latao);transition:width .35s ease}
+main{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 120px}
+.wrap{max-width:640px;margin:0 auto}
+.cartao{background:var(--papel);border:1px solid var(--linha);border-radius:18px;padding:24px 20px;display:grid;gap:22px}
+/* Capa */
+.capa{background:var(--grafite);color:var(--osso);border-radius:22px;padding:30px 22px;display:grid;gap:16px;text-align:left}
+.capa img{width:110px;height:auto}
+.capa h1{font:700 clamp(30px,7vw,40px)/1.08 var(--display);margin:4px 0 0;text-wrap:balance}
+.capa h1 em{font-style:normal;color:var(--latao)}
+.capa p{margin:0;color:#D7CFC4;max-width:52ch}
+.fatos{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:4px}
+.fatos div{border:1px solid rgba(201,164,92,.45);border-radius:12px;padding:10px 8px;text-align:center}
+.fatos b{display:block;font:700 20px/1.1 var(--display);color:var(--latao)}
+.fatos span{font-size:12px;color:#CFC6BA}
+.aviso-rascunho{background:rgba(201,164,92,.14);border:1px solid rgba(201,164,92,.5);border-radius:12px;padding:12px 14px;font-size:14px;color:var(--osso)}
+/* Etapas */
+.etapa{display:grid;gap:22px}
+.etapa .eyebrow{margin-bottom:-18px}
+.eyebrow{margin:0;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--beterraba)}
+h2{font:700 28px/1.15 var(--display);margin:2px 0 0;color:var(--grafite);text-wrap:balance}
+.lead{margin:-14px 0 4px;color:var(--grafite-2)}
+.campo{border:0;margin:0;padding:0;min-width:0;display:grid;gap:8px}
+.campo>label,legend{font-weight:600;font-size:16px;line-height:1.35;padding:0;color:var(--grafite)}
+legend{margin-bottom:8px}
+.req{color:var(--beterraba)}
+.opt{font-weight:500;font-size:12px;color:#8A8077;margin-left:4px}
+.ajuda{margin:-4px 0 0;font-size:13px;color:#7A7068}
+input[type=text],input[type=tel],input[type=email],textarea{width:100%;font:inherit;font-size:16px;color:var(--grafite);background:#fff;
+border:1.5px solid var(--linha);border-radius:12px;padding:13px 14px;transition:border-color .15s}
+textarea{resize:vertical;min-height:96px}
+input::placeholder,textarea::placeholder{color:#A99F94}
+input:focus,textarea:focus{outline:none;border-color:var(--beterraba);box-shadow:0 0 0 3px rgba(122,18,51,.14)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative;cursor:pointer}
+.chip input{position:absolute;opacity:0;pointer-events:none}
+.chip span{display:inline-block;padding:10px 14px;border-radius:999px;border:1.5px solid var(--linha);background:#fff;font-size:15px;font-weight:500;transition:all .15s}
+.chip input:checked+span{background:var(--beterraba);border-color:var(--beterraba);color:#fff}
+.chip input:focus-visible+span{outline:2px solid var(--latao);outline-offset:2px}
+.campo.invalido input,.campo.invalido textarea{border-color:var(--erro)}
+.erro{margin:0;color:var(--erro);font-size:13px;font-weight:600}
+.aceite{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--grafite-2);background:#F3EDE5;border-radius:12px;padding:14px}
+.aceite input{width:22px;height:22px;flex:0 0 auto;accent-color:var(--beterraba);margin-top:1px}
+.salvo{font-size:12px;color:#8A8077;text-align:center;margin:0}
+/* Navegação fixa */
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:5;background:rgba(239,233,225,.94);backdrop-filter:blur(8px);border-top:1px solid var(--linha);
+padding-bottom:max(12px,env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.nav-in{max-width:640px;margin:0 auto;padding-top:12px;display:flex;gap:10px}
+.btn{font:700 16px var(--texto);border-radius:14px;padding:15px 18px;cursor:pointer;border:1.5px solid transparent}
+.btn-pri{flex:1;background:var(--beterraba);color:#fff}
+.btn-pri:hover{background:var(--beterraba-esc)}
+.btn-sec{background:transparent;border-color:var(--grafite-2);color:var(--grafite)}
+.btn-ouro{background:var(--latao);color:var(--grafite);width:100%}
+.btn:focus-visible{outline:2px solid var(--latao);outline-offset:2px}
+.btn[disabled]{opacity:.6;cursor:wait}
+/* Final */
+.fim{text-align:center;justify-items:center}
+.selo{width:72px;height:72px;border-radius:50%;background:var(--beterraba);color:var(--latao);display:grid;place-items:center;font:700 34px var(--display)}
+.fim h2{margin-top:6px}
+.fim p{margin:0;color:var(--grafite-2);max-width:46ch}
+.passos{display:grid;gap:10px;text-align:left;width:100%;margin:4px 0;padding:0;list-style:none;counter-reset:p}
+.passos li{counter-increment:p;display:flex;gap:12px;align-items:flex-start;background:#F3EDE5;border-radius:12px;padding:12px 14px;font-size:15px}
+.passos li::before{content:counter(p);flex:0 0 26px;height:26px;border-radius:50%;background:var(--grafite);color:var(--latao);display:grid;place-items:center;font-weight:700;font-size:13px}
+a.btn{text-decoration:none;text-align:center;display:block}
+.falha{background:#FBEAEA;border:1px solid #E6B4B0;border-radius:12px;padding:14px;color:#6B1B16;font-size:14px;display:grid;gap:10px}
+.hp{position:absolute;left:-9999px}
+
+/* Cartões de plano */
+.planos{display:grid;gap:12px}
+.plano-card{position:relative;display:block;cursor:pointer}
+.plano-card input{position:absolute;opacity:0;pointer-events:none}
+.plano-in{display:grid;gap:10px;border:1.5px solid var(--linha);border-radius:16px;background:#fff;padding:16px 16px 14px;transition:all .15s}
+.plano-topo{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.plano-nome{font:700 22px/1.1 var(--display);color:var(--grafite)}
+.plano-dias{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--beterraba)}
+.plano-preco{font:700 26px/1 var(--display);color:var(--beterraba)}
+.plano-preco small{font:600 13px var(--texto);color:#8A8077}
+.plano-alt{font-size:13px;color:#7A7068;margin-top:-4px}
+.plano-itens{margin:0;padding:0;list-style:none;display:grid;gap:6px;font-size:14px;color:var(--grafite-2)}
+.plano-itens li{display:flex;gap:8px;align-items:flex-start}
+.plano-itens li::before{content:"";flex:0 0 7px;height:7px;margin-top:7px;border-radius:50%;background:var(--latao)}
+.plano-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:rgba(201,164,92,.18);color:var(--latao-esc);border-radius:999px;padding:4px 10px}
+.plano-card input:checked+.plano-in{border-color:var(--beterraba);box-shadow:0 0 0 3px rgba(122,18,51,.14);background:#FFFDFB}
+.plano-card input:checked+.plano-in .plano-nome::after{content:" \2713";color:var(--beterraba)}
+.plano-card input:focus-visible+.plano-in{outline:2px solid var(--latao);outline-offset:2px}
+.plano-simples .plano-in{padding:13px 16px}
+.plano-simples .plano-nome{font:600 15px/1.35 var(--texto)}
+.nota-planos{margin:2px 0 0;font-size:13px;line-height:1.5;color:#6E655D;background:#F3EDE5;border-radius:12px;padding:12px 14px}
+.nota-planos b{color:var(--grafite)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="topo">
+<div class="topo-in">
+<img src="logo.png" alt="Bonifácio Marketing" width="53" height="40">
+<div class="prog" id="prog" hidden>
+<div class="prog-txt"><span id="prog-tit">Você</span><span id="prog-num">1/8</span></div>
+<div class="barra"><i id="prog-bar"></i></div>
+</div>
+</div>
+</header>
+<main><div class="wrap">
+<section id="capa" class="capa">
+<img id="logo-capa" alt="Bonifácio Marketing" width="150" height="113">
+<h1>Diagnóstico <em>Estratégico</em></h1>
+<p>Estas respostas são a base do plano estratégico do seu negócio. Responda com sinceridade: quanto mais a gente souber, mais certeiro fica o plano.</p>
+<div class="fatos">
+<div><b>8</b><span>etapas</span></div>
+<div><b>8 min</b><span>em média</span></div>
+<div><b>Auto</b><span>salva sozinho</span></div>
+</div>
+<div class="aviso-rascunho" id="aviso-rascunho" hidden>Você já começou a responder. Suas respostas foram guardadas, é só continuar de onde parou.</div>
+<button type="button" class="btn btn-ouro" id="comecar">Começar agora</button>
+<p style="font-size:13px">Precisou sair no meio? Tudo fica salvo. Abra o mesmo link depois e continue.</p>
+</section>
+<form id="form" class="cartao" hidden novalidate>
+<div id="etapas"></div>
+<div id="bloco-envio" hidden><label class="aceite"><input type="checkbox" id="f_lgpd" name="lgpd" value="Autorizo"> <span>Autorizo a Bonifácio Marketing a usar estas informações para elaborar o meu plano estratégico e o contrato, conforme a LGPD.</span></label><p class="erro" id="erro_lgpd" hidden>Marque a autorização para enviar.</p></div>
+<div class="falha" id="falha" hidden>
+<span>Não conseguimos enviar agora (pode ser a internet). Suas respostas continuam salvas aqui. Confira a internet e toque em “Tentar de novo”.</span>
+</div>
+<p class="salvo" id="salvo">Respostas salvas automaticamente neste aparelho.</p>
+</form>
+<section id="fim" class="cartao fim" hidden>
+<div class="selo" aria-hidden="true">✓</div>
+<p class="eyebrow">Recebido</p>
+<h2>Pronto, <span id="fim-nome">obrigado</span>!</h2>
+<p>Suas respostas chegaram para a equipe da Bonifácio Marketing. Agora é com a gente: não precisa enviar mais nada, nós entramos em contato com você.</p>
+<ol class="passos">
+<li>Analisamos o seu negócio, a concorrência e a sua presença digital.</li>
+<li>Montamos o seu plano estratégico em PDF.</li>
+<li>Apresentamos o plano e combinamos o início do trabalho.</li>
+</ol>
+</section>
+</div></main>
+<nav class="nav" id="nav" hidden>
+<div class="nav-in">
+<button type="button" class="btn btn-sec" id="voltar">Voltar</button>
+<button type="button" class="btn btn-pri" id="avancar">Próximo</button>
+</div>
+</nav>
+<script>
+(function(){
+// Monta as etapas a partir da lista de perguntas
+(function(){
+var ETAPAS = [["Você", "Pra começar, quem está respondendo?", [["text", "nome", "Seu nome completo", true, "Ex.: Maria Aparecida Souza", null], ["tel", "whatsapp", "Seu WhatsApp com DDD", true, "(34) 99999-9999", null], ["email", "email", "Seu e-mail", false, "voce@email.com", null], ["radio", "cargo", "Qual é o seu papel na empresa?", true, ["Dono(a)", "Sócio(a)", "Gerente", "Outro"], null]]], ["Sua empresa", "Conta um pouco do seu negócio.", [["text", "empresa", "Nome da empresa (como o cliente conhece)", true, "Ex.: Pamonharia da Dona Lu", null], ["radio", "segmento", "Segmento", true, ["Alimentação", "Pet", "Beleza e estética", "Saúde e bem-estar", "Loja / varejo", "Mercado / mercearia", "Serviços", "Outro"], null], ["text", "segmento_outro", "Se marcou “Outro”, qual?", false, "", null], ["text", "cidade", "Cidade e estado", true, "Ex.: Uberaba-MG", null], ["radio", "tempo", "Há quanto tempo a empresa existe?", true, ["Menos de 1 ano", "1 a 3 anos", "3 a 10 anos", "Mais de 10 anos"], null], ["radio", "equipe", "Quantas pessoas trabalham com você?", false, ["Só eu", "2 a 5", "6 a 15", "Mais de 15"], null], ["check", "atendimento", "Como você atende? (marque todos)", true, ["Loja física", "Delivery", "WhatsApp", "Site / loja online", "iFood ou apps", "Vou até o cliente"], null], ["text", "horario", "Dias e horário de funcionamento", false, "Ex.: seg a sáb, 8h às 18h", null]]], ["O que você vende", "Aqui a gente entende o seu produto e o seu cliente.", [["area", "produtos", "O que você vende? Liste os principais produtos ou serviços", true, "Ex.: pamonha doce e salgada, curau, bolo de milho…", null], ["text", "carro_chefe", "Qual é o seu carro-chefe (o que mais vende)?", false, "", null], ["radio", "ticket", "Quanto um cliente gasta, em média, por compra?", false, ["Até R$ 30", "R$ 30 a R$ 100", "R$ 100 a R$ 300", "R$ 300 a R$ 1.000", "Acima de R$ 1.000"], null], ["area", "cliente_ideal", "Quem é o seu cliente ideal?", false, "Idade, bairro, o que procura, quando compra…", null], ["check", "origem_clientes", "Como os clientes chegam até você hoje?", false, ["Indicação", "Instagram", "Facebook", "Google", "Passam na frente", "WhatsApp", "iFood ou apps", "Anúncios pagos"], null], ["text", "periodo_fraco", "Quais dias ou meses são mais fracos?", false, "Ex.: segunda e terça; janeiro", null]]], ["Mercado", "Quem disputa o seu cliente e por que ele escolhe você.", [["area", "concorrentes", "Quem são seus principais concorrentes?", false, "Nome ou @ no Instagram", null], ["area", "diferencial", "Por que o cliente escolhe você e não o concorrente?", true, "Qualidade, preço, atendimento, tradição…", null], ["area", "objecoes", "O que faz um cliente desistir ou reclamar?", false, "Preço, demora, distância…", null]]], ["Presença digital", "Como a sua marca aparece na internet hoje.", [["text", "instagram", "Instagram da empresa", false, "@suaempresa", null], ["text", "facebook", "Página do Facebook", false, "Nome da página", null], ["radio", "google", "Tem perfil no Google (aparece no Maps)?", false, ["Sim, atualizado", "Tenho, mas está parado", "Não tenho", "Não sei"], null], ["text", "site", "Site (se tiver)", false, "www.", null], ["radio", "quem_posta", "Quem cuida das redes hoje?", false, ["Ninguém", "Eu mesmo(a)", "Funcionário ou parente", "Agência ou freelancer"], null], ["radio", "material", "Você tem fotos e vídeos dos seus produtos?", false, ["Tenho bastante", "Tenho poucos", "Não tenho"], null], ["radio", "logo", "Sobre a sua logomarca", false, ["Tenho e gosto", "Tenho, mas quero melhorar", "Não tenho"], null], ["radio", "anuncios", "Já fez anúncios pagos?", false, ["Nunca", "Só no botão Impulsionar", "Pelo Gerenciador de Anúncios", "Faço hoje"], null], ["radio", "verba", "Quanto pode investir por mês em anúncios (pago direto à plataforma)?", false, ["Até R$ 300", "R$ 300 a R$ 1.000", "R$ 1.000 a R$ 3.000", "Acima de R$ 3.000", "Ainda não sei"], null]]], ["Metas", "Onde você quer chegar. É a parte mais importante.", [["radio", "objetivo", "Qual é o seu objetivo número 1 para os próximos 3 meses?", true, ["Vender mais", "Atrair clientes novos", "Fazer o cliente voltar", "Ser conhecido na cidade", "Lançar produto ou unidade", "Organizar a empresa e as finanças"], null], ["radio", "faturamento", "Faturamento médio por mês hoje", false, ["Até R$ 10 mil", "R$ 10 a 30 mil", "R$ 30 a 100 mil", "R$ 100 a 300 mil", "Acima de R$ 300 mil", "Prefiro não dizer"], "Fica só entre nós. Ajuda a montar metas realistas."], ["text", "meta", "Que resultado faria você dizer “valeu a pena” daqui a 6 meses?", false, "Ex.: 30% mais pedidos no delivery", null], ["area", "dificuldade", "Qual é a sua maior dificuldade hoje?", true, "Pode desabafar. Quanto mais sincero, melhor o plano.", null], ["area", "ja_tentou", "O que você já tentou e não deu certo?", false, "", null]]], ["Seu plano", "Escolha como quer trabalhar com a gente. Você confirma depois de ver o seu plano estratégico.", [["planos", "plano", "Qual plano você prefere?", true, [{"v": "Essencial · 2 dias por semana · R$ 1.200/mês", "nome": "Essencial", "dias": "2 dias por semana", "preco": "1.200", "alt": "ou R$ 600 por quinzena · R$ 1.140 no mensal adiantado", "itens": ["Produção na terça e na quinta", "3 posts + 1 vídeo profissional em cada dia", "Consultoria de negócios"], "tag": ""}, {"v": "Crescimento · 3 dias por semana + anúncios Meta · R$ 1.800/mês", "nome": "Crescimento", "dias": "3 dias por semana", "preco": "1.800", "alt": "ou R$ 900 por quinzena · R$ 1.710 no mensal adiantado", "itens": ["Produção na segunda, quarta e sexta", "3 posts + 1 vídeo profissional em cada dia", "Gestão de anúncios no Instagram e Facebook", "Consultoria de negócios"], "tag": "Inclui anúncios"}, {"v": "Domínio · 5 dias por semana + Meta + Google Ads · R$ 2.800/mês", "nome": "Domínio", "dias": "5 dias por semana", "preco": "2.800", "alt": "ou R$ 1.400 por quinzena · R$ 2.660 no mensal adiantado", "itens": ["Produção de segunda a sexta", "3 posts + 1 vídeo profissional em cada dia", "Anúncios no Instagram, Facebook e Google", "Consultoria de negócios"], "tag": "Presença máxima"}, {"v": "Ainda não sei · quero a recomendação no plano estratégico", "nome": "Ainda não sei, quero a recomendação de vocês no plano estratégico", "simples": true}], null], ["radio", "pagamento", "Como prefere pagar?", false, ["Mensal adiantado (5% de desconto)", "Quinzenal adiantado"], "Sempre adiantado, via Pix."]]], ["Dados para o contrato", "Últimos detalhes, para o contrato e a nota.", [["text", "razao_social", "Nome ou razão social do contratante", true, "Como vai no contrato", null], ["text", "documento", "CPF ou CNPJ", true, "000.000.000-00 ou 00.000.000/0000-00", null], ["text", "endereco", "Endereço (rua, número e bairro)", true, "", null], ["text", "cidade_uf", "Cidade-UF", true, "Ex.: Uberaba-MG", null], ["text", "cep", "CEP", true, "00000-000", null], ["text", "responsavel", "Responsável que assina (se for outra pessoa)", false, "", null], ["text", "cpf_responsavel", "CPF do responsável (se for outra pessoa)", false, "", null], ["area", "extra", "Quer contar mais alguma coisa?", false, "", null]]]], esc = function(s){ var d=document.createElement('div'); d.textContent=s; return d.innerHTML };
+var h = '';
+ETAPAS.forEach(function(et, i){
+h += '<section class="etapa" data-etapa="'+i+'" data-titulo="'+esc(et[0])+'" hidden><p class="eyebrow">Etapa '+(i+1)+' de '+ETAPAS.length+'</p><h2>'+esc(et[0])+'</h2><p class="lead">'+esc(et[1])+'</p>';
+et[2].forEach(function(c){
+var tipo=c[0], n=c[1], rot=c[2], req=c[3], opt=c[4], aj=c[5];
+var star = req ? ' <span class="req" aria-hidden="true">*</span>' : ' <span class="opt">opcional</span>';
+var ajuda = aj ? '<p class="ajuda">'+esc(aj)+'</p>' : '', r = req ? ' required' : '';
+if(tipo==='text'||tipo==='tel'||tipo==='email'){
+var ex = tipo==='tel' ? ' inputmode="tel" autocomplete="tel"' : tipo==='email' ? ' autocomplete="email"' : (n==='nome' ? ' autocomplete="name"' : '');
+h += '<div class="campo" data-name="'+n+'"><label for="f_'+n+'">'+esc(rot)+star+'</label>'+ajuda+'<input id="f_'+n+'" name="'+n+'" type="'+tipo+'" placeholder="'+esc(opt)+'"'+ex+r+'><p class="erro" hidden>Preencha este campo para continuar.</p></div>';
+} else if(tipo==='planos'){
+h += '<fieldset class="campo" data-name="'+n+'" data-tipo="radio"'+(req?' data-req':'')+'><legend>'+esc(rot)+star+'</legend>'+ajuda+'<div class="planos">'+
+opt.map(function(p){
+if(p.simples) return '<label class="plano-card plano-simples"><input type="radio" name="'+n+'" value="'+esc(p.v)+'"><span class="plano-in"><span class="plano-nome">'+esc(p.nome)+'</span></span></label>';
+return '<label class="plano-card"><input type="radio" name="'+n+'" value="'+esc(p.v)+'"><span class="plano-in">'+
+'<span class="plano-topo"><span><span class="plano-dias">'+esc(p.dias)+'</span><br><span class="plano-nome">'+esc(p.nome)+'</span></span>'+(p.tag?'<span class="plano-tag">'+esc(p.tag)+'</span>':'')+'</span>'+
+'<span class="plano-preco">R$ '+esc(p.preco)+' <small>/mês</small></span><span class="plano-alt">'+esc(p.alt)+'</span>'+
+'<ul class="plano-itens">'+p.itens.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul></span></label>';
+}).join('')+
+'</div><p class="nota-planos"><b>Taxa única de implantação: R$ 300</b>, que inclui este diagnóstico e o seu plano estratégico em PDF. Contrato de 6 meses, pagamento sempre adiantado via Pix. A verba dos anúncios é paga direto à plataforma (Meta ou Google).</p><p class="erro" hidden>Escolha uma opção para continuar.</p></fieldset>';
+} else if(tipo==='area'){
+h += '<div class="campo" data-name="'+n+'"><label for="f_'+n+'">'+esc(rot)+star+'</label>'+ajuda+'<textarea id="f_'+n+'" name="'+n+'" rows="3" placeholder="'+esc(opt)+'"'+r+'></textarea><p class="erro" hidden>Preencha este campo para continuar.</p></div>';
+} else {
+var tp = tipo==='radio' ? 'radio' : 'checkbox';
+h += '<fieldset class="campo" data-name="'+n+'" data-tipo="'+tp+'"'+(req?' data-req':'')+'><legend>'+esc(rot)+star+'</legend>'+ajuda+'<div class="chips">'+
+opt.map(function(o){ return '<label class="chip"><input type="'+tp+'" name="'+n+'" value="'+esc(o)+'"><span>'+esc(o)+'</span></label>' }).join('')+
+'</div><p class="erro" hidden>Escolha uma opção para continuar.</p></fieldset>';
+}
+});
+h += '</section>';
+});
+document.getElementById('etapas').outerHTML = h;
+})();
+var CAMPOS = ["nome", "whatsapp", "email", "cargo", "empresa", "segmento", "segmento_outro", "cidade", "tempo", "equipe", "atendimento", "horario", "produtos", "carro_chefe", "ticket", "cliente_ideal", "origem_clientes", "periodo_fraco", "concorrentes", "diferencial", "objecoes", "instagram", "facebook", "google", "site", "quem_posta", "material", "logo", "anuncios", "verba", "objetivo", "faturamento", "meta", "dificuldade", "ja_tentou", "razao_social", "documento", "endereco", "cidade_uf", "cep", "responsavel", "cpf_responsavel", "extra", "plano", "pagamento"], CHAVE = "bm_diagnostico_v2";
+var form = document.getElementById('form'), etapas = [].slice.call(document.querySelectorAll('.etapa'));
+var total = etapas.length, atual = 0, enviado = false, ultimoParcial = "";
+var $ = function(id){return document.getElementById(id)};
+function ler(){ try{ return JSON.parse(localStorage.getItem(CHAVE)||"null") }catch(e){ return null } }
+function gravar(o){ try{ localStorage.setItem(CHAVE, JSON.stringify(o)) }catch(e){} }
+function limpar(){ try{ localStorage.removeItem(CHAVE) }catch(e){} }
+function valores(){
+var v = {};
+CAMPOS.forEach(function(n){
+var els = form.querySelectorAll('[name="'+n+'"]');
+if(!els.length) return;
+if(els[0].type==='radio'||els[0].type==='checkbox'){
+v[n] = [].filter.call(els,function(x){return x.checked}).map(function(x){return x.value}).join(', ');
+} else v[n] = els[0].value.trim();
+});
+return v;
+}
+function preencher(v){
+Object.keys(v||{}).forEach(function(n){
+var els = form.querySelectorAll('[name="'+n+'"]'); if(!els.length) return;
+if(els[0].type==='radio'||els[0].type==='checkbox'){
+var sel = (v[n]||'').split(', ');
+[].forEach.call(els,function(x){ x.checked = sel.indexOf(x.value)>-1 });
+} else els[0].value = v[n]||'';
+});
+}
+function sessao(){
+var s = ler(); if(s && s.sessao) return s.sessao;
+return 'BM-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).slice(2,6).toUpperCase();
+}
+var SESSAO = sessao();
+var t; function salvar(){ clearTimeout(t); t = setTimeout(function(){ gravar({sessao:SESSAO, etapa:atual, v:valores()}) }, 250) }
+form.addEventListener('input', salvar); form.addEventListener('change', salvar);
+function dados(status){
+var v = valores();
+v.status = status; v.sessao = SESSAO;
+v.etapa_parada = (atual+1)+' de '+total+' - '+etapas[atual].dataset.titulo;
+v.lgpd = $('f_lgpd').checked ? 'Autorizo' : '';
+var obs = v.extra;
+v.extra = [v.plano ? 'PLANO: '+v.plano : '', v.pagamento ? 'PAGAMENTO: '+v.pagamento : '', obs ? 'OBS: '+obs : ''].filter(Boolean).join(' | ');
+return v;
+}
+// Envia para o Google Apps Script (planilha + e-mail) sem depender da conta Google do celular
+var API = 'https://script.google.com/macros/s/AKfycbzHpej5_0IoG3d8G-skT-sTAoOolrxtoIlln1vgCIW-dDYEOqurjf44n-OV5PPSl2aQ/exec';
+function servidor(){
+var o = { _s:null, _f:null,
+withSuccessHandler:function(f){ o._s=f; return o },
+withFailureHandler:function(f){ o._f=f; return o },
+salvar:function(d){ var ok=o._s, falhou=o._f;
+fetch(API, {method:'POST', mode:'no-cors', credentials:'omit', keepalive:true, headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(d)})
+.then(function(){ if(ok) ok() }).catch(function(){ if(falhou) falhou() }); } };
+return o;
+}
+// Salva no servidor, sem o cliente perceber, se ele sair no meio
+function salvarParcial(){
+if(enviado) return;
+var v = valores(); if(!v.nome && !v.whatsapp && !v.empresa) return;
+var d = dados('parcial'), s = JSON.stringify(d); if(s===ultimoParcial) return;
+ultimoParcial = s;
+var r = servidor(); if(r) try{ r.withFailureHandler(function(){ ultimoParcial = "" }).salvar(d) }catch(e){}
+}
+document.addEventListener('visibilitychange', function(){ if(document.visibilityState==='hidden') salvarParcial() });
+window.addEventListener('pagehide', salvarParcial);
+function mostrar(i){
+atual = i;
+etapas.forEach(function(s,k){ s.hidden = k!==i });
+$('bloco-envio').hidden = i!==total-1;
+$('voltar').hidden = i===0;
+$('avancar').textContent = i===total-1 ? 'Enviar respostas' : 'Próximo';
+$('prog-tit').textContent = etapas[i].dataset.titulo;
+$('prog-num').textContent = (i+1)+'/'+total;
+$('prog-bar').style.width = ((i+1)/total*100)+'%';
+salvar();
+window.scrollTo({top:0, behavior:'smooth'});
+}
+function valida(i){
+var ok = true, primeiro = null;
+[].forEach.call(etapas[i].querySelectorAll('.campo'), function(c){
+var n = c.dataset.name, req = c.hasAttribute('data-req') || !!c.querySelector('[required]'), bom = true;
+if(req){
+if(c.dataset.tipo){ bom = !!c.querySelector('input:checked') }
+else { var el = c.querySelector('input,textarea'); bom = el.value.trim().length>0 }
+}
+c.classList.toggle('invalido', !bom); c.querySelector('.erro').hidden = bom;
+if(!bom){ ok = false; if(!primeiro) primeiro = c }
+});
+if(i===total-1){ var a = $('f_lgpd').checked; $('erro_lgpd').hidden = a; if(!a){ ok=false; if(!primeiro) primeiro=$('f_lgpd') } }
+if(primeiro) primeiro.scrollIntoView({behavior:'smooth', block:'center'});
+return ok;
+}
+form.addEventListener('change', function(ev){
+var c = ev.target.closest('.campo'); if(c && c.classList.contains('invalido')){ c.classList.remove('invalido'); c.querySelector('.erro').hidden = true }
+if(ev.target.id==='f_lgpd') $('erro_lgpd').hidden = true;
+});
+function enviar(){
+var bt = $('avancar'); bt.disabled = true; bt.textContent = 'Enviando…'; $('falha').hidden = true;
+var erro = function(){ bt.disabled = false; bt.textContent = 'Tentar de novo'; $('falha').hidden = false; $('falha').scrollIntoView({behavior:'smooth'}) };
+var r = servidor(); if(!r) return erro();
+r.withSuccessHandler(concluir).withFailureHandler(erro).salvar(dados('completo'));
+}
+function concluir(){
+enviado = true; var v = valores(); limpar();
+form.hidden = true; $('nav').hidden = true; $('fim').hidden = false; $('prog-bar').style.width = '100%'; $('prog-tit').textContent = 'Concluído';
+$('fim-nome').textContent = (v.nome||'').split(' ')[0] || 'obrigado';
+window.scrollTo({top:0});
+}
+$('avancar').onclick = function(){ if(!valida(atual)) return; if(atual<total-1){ mostrar(atual+1); salvarParcial() } else enviar() };
+$('voltar').onclick = function(){ if(atual>0) mostrar(atual-1) };
+$('comecar').onclick = function(){
+$('capa').hidden = true; form.hidden = false; $('nav').hidden = false; $('prog').hidden = false;
+var s = ler(); mostrar(s && typeof s.etapa==='number' ? Math.min(s.etapa,total-1) : 0);
+};
+$('logo-capa').src = document.querySelector('.topo img').src;
+var s = ler();
+if(s && s.v){ preencher(s.v); $('aviso-rascunho').hidden = false; $('comecar').textContent = 'Continuar de onde parei' }
+})();
+</script>
+</body>
+</html>
